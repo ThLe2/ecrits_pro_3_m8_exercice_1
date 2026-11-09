@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les mots de liaison</title>
+<style>
+
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+
+.champ{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:11px 0;
+ padding:11px 13px;background:#FCF9FB;border:1px solid var(--filet);border-radius:9px}
+.champ .lb{flex:1 1 340px;font-size:15px}
+.champ .pts{font-size:12px;color:var(--gris-moyen);white-space:nowrap}
+input.num,select.ch{font-family:inherit;font-size:15px;padding:9px 12px;border:1.5px solid var(--filet);
+ border-radius:8px;background:#fff;color:var(--gris);min-width:210px}
+input.num{min-width:150px;text-align:right;font-variant-numeric:tabular-nums}
+input.num:focus,select.ch:focus{outline:none;border-color:var(--prune)}
+input.num:disabled,select.ch:disabled{background:#F1EBEF;color:var(--gris-moyen);cursor:not-allowed}
+.champ.just{border-color:#BFE0CC;background:#F3FAF5}
+.champ.faux{border-color:#EFC9C9;background:#FDF5F5}
+.verdict{font-weight:800;font-size:13px;white-space:nowrap}
+.verdict.ok{color:var(--ok)}.verdict.ko{color:var(--ko)}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;border:0;
+ padding:12px 22px;border-radius:8px;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer}
+.btn:hover{background:var(--prune-fonce)}
+.btn:disabled{background:#C9B7C3;cursor:not-allowed}
+.btn.sec{background:#fff;color:var(--prune-fonce);border:1.5px solid var(--filet)}
+.btn.sec:hover{background:var(--prune-clair)}
+.barre{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.fige{display:inline-block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;
+ color:var(--prune-fonce);background:var(--prune-clair);padding:6px 11px;border-radius:20px}
+.corr{display:none;margin-top:16px}.corr.on{display:block}
+.score{display:flex;flex-wrap:wrap;gap:18px;align-items:baseline;
+ background:var(--prune-fonce);color:#fff;border-radius:10px;padding:18px 22px;margin:18px 0}
+.score .gros{font-family:Georgia,serif;font-size:32px;font-weight:700;color:#fff}
+.score .lib{font-size:14px;color:#EAD3E3}
+.opt{display:block;background:#fff;border:1.5px solid var(--filet);border-radius:9px;
+ padding:11px 14px;margin:8px 0;font-size:15px;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:10px}
+.opt.sel{border-color:var(--prune);background:var(--prune-clair)}
+.opt.bonne{border-color:var(--ok);background:#F3FAF5}
+.opt.mauvaise{border-color:var(--ko);background:#FDF5F5}
+.opt.verrou{cursor:not-allowed}
+.qbloc{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:18px 20px;margin:16px 0}
+.qnum{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:800;color:var(--accent)}
+.qth{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;
+ color:var(--prune-fonce);background:var(--prune-clair);padding:4px 9px;border-radius:20px;margin-left:8px}
+.qen{font-size:16.5px;font-weight:700;color:var(--vert);margin:8px 0 4px}
+.multi{font-size:12.5px;color:var(--gris-moyen);font-style:italic;margin-bottom:6px}
+.prog{height:8px;background:var(--filet);border-radius:20px;overflow:hidden;margin:14px 0 4px}
+.prog i{display:block;height:100%;background:var(--prune);width:0;transition:width .25s}
+.sticky{position:sticky;bottom:0;background:var(--creme);padding:12px 0;border-top:1px solid var(--filet)}
+@media print{.btn,.sticky{display:none}}
+
+
+.phrase{flex:1 1 360px;font-size:15.5px}
+.phrase .trou{display:inline-block;min-width:70px;border-bottom:2px dotted var(--accent);text-align:center;color:var(--accent);font-weight:800}
+select.ch{min-width:170px}
+
+textarea.redac{width:100%;font-family:inherit;font-size:15.5px;line-height:1.7;padding:12px 14px;border:1.5px solid var(--filet);border-radius:9px;background:#fff;color:var(--gris);resize:vertical}
+textarea.redac:focus{outline:none;border-color:var(--prune)}
+textarea.redac:disabled{background:#F1EBEF;color:var(--gris-moyen)}
+.cpt{font-size:12.5px;color:var(--gris-moyen);margin-top:5px}
+.pre{white-space:pre-line}
+.qbloc .situ{margin:10px 0 6px}
+.expl{font-size:14.5px;margin-top:10px}
+audio{width:100%;margin:10px 0}
+.audio-ko{display:none}.audio-ko.on{display:block}
+.diff{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 16px;font-size:15.5px;line-height:1.9;white-space:pre-line}
+.diff .ko{background:#FDECEC;border-bottom:2px solid var(--ko);border-radius:3px;padding:0 2px}
+.diff .ko small{color:var(--ok);font-weight:800;margin-left:3px}
+.diff .manque{color:var(--ko);font-weight:800}
+.mots{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.mots span{background:var(--prune-clair);color:var(--prune-fonce);border-radius:20px;padding:3px 10px;font-size:13.5px;font-weight:700}
+</style></head>
+<body>
+<header class="bandeau"><div class="wrap">
+ <div class="chapitre">Écrits professionnels 3 <span>/</span> Module 8</div><h1>Les mots de liaison</h1><p class="sous">Exercice d'entraînement — 9 questions, correction à la validation</p>
+</div></header>
+<div class="wrap">
+
+<div class="carte">
+<div class="enc"><span class="t">CE QUE VOUS ALLEZ FAIRE</span>Répondez aux 9 questions, puis validez. <b>Une fois l'atelier validé, vos réponses sont figées</b> et la correction s'affiche, question par question : lisez-la avant de passer à la suite. Vous pouvez recommencer l'exercice entier à tout moment, ce qui remet tout à zéro. Aucun résultat n'est transmis : c'est un entraînement.</div>
+</div>
+<div class="situ"><b>Consigne.</b> Complétez chaque phrase avec le mot de liaison qui convient. Mots de liaison de l'exercice : en effet, or, de plus, voire, notamment, donc, c'est pourquoi, hormis, toutefois.</div>
+<div id="questions"></div>
+<div class="barre"><button class="btn" id="valider">Valider l'atelier</button><span id="fige"></span></div>
+<div id="final"></div>
+<div class="barre sticky">
+ <button class="btn sec" id="rejouer">↻ Recommencer l'exercice</button>
+ <span style="font-size:13px;color:var(--gris-moyen)">Le rejeu efface toutes les réponses et les corrections.</span>
+</div>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</div>
+<script>
+const Q = [
+ {
+  "en": "Vous retrouverez ces précisions dans votre espace client, ______ le détail de vos consommations.",
+  "cas": "",
+  "op": [
+   "donc",
+   "voire",
+   "notamment",
+   "or"
+  ],
+  "multi": false,
+  "c": 2,
+  "ex": "« Notamment » introduit un exemple parmi les précisions."
+ },
+ {
+  "en": "L'article est défectueux, ______ le client nous a envoyé une lettre de réclamation.",
+  "cas": "",
+  "op": [
+   "c'est pourquoi",
+   "en effet",
+   "hormis",
+   "toutefois"
+  ],
+  "multi": false,
+  "c": 0,
+  "ex": "La réclamation est la conséquence du défaut : « c'est pourquoi »."
+ },
+ {
+  "en": "Nous expédions un nouvel article au client. ______, nous joignons un bon de réduction de 10 euros.",
+  "cas": "",
+  "op": [
+   "De plus",
+   "Or",
+   "Toutefois",
+   "Donc"
+  ],
+  "multi": false,
+  "c": 0,
+  "ex": "On ajoute une action à la première : « De plus »."
+ },
+ {
+  "en": "Le colis a été expédié la semaine dernière. ______ le client ne l'a pas encore reçu.",
+  "cas": "",
+  "op": [
+   "Or",
+   "Donc",
+   "De plus",
+   "Notamment"
+  ],
+  "multi": false,
+  "c": 0,
+  "ex": "« Or » introduit un fait qui contredit ce qu'on attendait."
+ },
+ {
+  "en": "Nous comprenons votre situation. ______, nous ne sommes pas en mesure de vous accorder un délai de paiement.",
+  "cas": "",
+  "op": [
+   "C'est pourquoi",
+   "Toutefois",
+   "En effet",
+   "De plus"
+  ],
+  "multi": false,
+  "c": 1,
+  "ex": "La seconde phrase restreint la première : « Toutefois »."
+ },
+ {
+  "en": "Notre fournisseur avait porté la mention « fragile » sur le colis. Sa responsabilité n'est ______ pas engagée.",
+  "cas": "",
+  "op": [
+   "toutefois",
+   "notamment",
+   "voire",
+   "donc"
+  ],
+  "multi": false,
+  "c": 3,
+  "ex": "C'est une conclusion logique : « donc »."
+ },
+ {
+  "en": "Votre demande a été rejetée. ______, nous acceptons toutes les inscriptions, hormis celles des jeunes de moins de 18 ans.",
+  "cas": "",
+  "op": [
+   "Donc",
+   "Or",
+   "De plus",
+   "En effet"
+  ],
+  "multi": false,
+  "c": 3,
+  "ex": "La seconde phrase explique le rejet : « En effet »."
+ },
+ {
+  "en": "Nous acceptons toutes les inscriptions, ______ celles des jeunes de moins de 18 ans.",
+  "cas": "",
+  "op": [
+   "donc",
+   "voire",
+   "hormis",
+   "notamment"
+  ],
+  "multi": false,
+  "c": 2,
+  "ex": "« Hormis » signifie « à l'exception de »."
+ },
+ {
+  "en": "Cette intervention va perturber le fonctionnement de nos services, ______ interrompre la production dans certains secteurs.",
+  "cas": "",
+  "op": [
+   "hormis",
+   "voire",
+   "or",
+   "notamment"
+  ],
+  "multi": false,
+  "c": 1,
+  "ex": "« Voire » signifie « et même » : on renchérit. À ne pas écrire « voire même », qui est un pléonasme."
+ }
+];
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+const TOTAL = Q.length;
+let valide = false;
+function rendre(){
+ document.getElementById('questions').innerHTML = Q.map((q,i)=>`
+  <div class="qbloc" id="q${i}">
+   <span class="qnum">Question ${i+1} / ${Q.length}</span>
+   <div class="qen pre">${esc(q.en)}</div>
+   ${q.cas?`<div class="situ pre">${esc(q.cas)}</div>`:''}
+   ${q.multi?'<div class="multi">Plusieurs réponses attendues — la question est juste seulement si la sélection est exactement la bonne.</div>':''}
+   ${q.op.map((o,j)=>`<label class="opt" id="o${i}_${j}"><input type="${q.multi?'checkbox':'radio'}" name="q${i}" value="${j}"> ${esc(o)}</label>`).join('')}
+   <div class="corr" id="c${i}"></div>
+  </div>`).join('');
+ Q.forEach((q,i)=>q.op.forEach((o,j)=>document.getElementById('o'+i+'_'+j).addEventListener('change',()=>{
+   q.op.forEach((x,k)=>document.getElementById('o'+i+'_'+k).classList.toggle('sel',document.querySelector(`#o${i}_${k} input`).checked));
+ })));
+}
+function choix(i){ return [...document.querySelectorAll('input[name="q'+i+'"]')].map((el,j)=>el.checked?j:-1).filter(j=>j>=0); }
+function juste(q,r){ const b=q.multi?q.c:[q.c]; return r.length===b.length && r.every(j=>b.includes(j)); }
+function valider(){
+ if(valide) return;
+ for(let i=0;i<Q.length;i++){ if(!choix(i).length){ alert("Répondez à toutes les questions avant de valider."); document.getElementById('q'+i).scrollIntoView({behavior:'smooth',block:'center'}); return; } }
+ valide = true; let s = 0;
+ Q.forEach((q,i)=>{
+  const r = choix(i), ok = juste(q,r), b = q.multi?q.c:[q.c];
+  if(ok) s++;
+  q.op.forEach((o,j)=>{ const el=document.getElementById('o'+i+'_'+j); el.classList.remove('sel'); el.classList.add('verrou');
+    el.querySelector('input').disabled=true;
+    if(b.includes(j)) el.classList.add('bonne'); else if(r.includes(j)) el.classList.add('mauvaise'); });
+  const c = document.getElementById('c'+i); c.className='corr on';
+  c.innerHTML = `<div class="enc ${ok?'':'al'}"><span class="t">${ok?'✓ RÉPONSE JUSTE':'✗ RÉPONSE ATTENDUE : '+esc(b.map(j=>q.op[j]).join(' + '))}</span>${esc(q.ex)}</div>`;
+ });
+ const btn=document.getElementById('valider'); btn.textContent='Atelier validé'; btn.disabled=true;
+ document.getElementById('fige').innerHTML='<span class="fige">Réponses figées</span>';
+ const pct = Math.round(s/TOTAL*100);
+ const mot = pct>=90 ? "La règle est acquise. Vous pouvez passer à la suite du parcours."
+  : pct>=70 ? "L'essentiel est en place. Relisez les explications des questions manquées avant de continuer."
+  : pct>=50 ? "Revoyez la capsule et les explications ci-dessus, puis refaites l'exercice."
+  : "Reprenez la capsule du module et son support avant de refaire l'exercice.";
+ document.getElementById('final').innerHTML = `
+  <h2><span class="num">·</span>Votre bilan</h2>
+  <div class="score"><span class="gros">${s} / ${TOTAL}</span><span class="lib">${pct} % de bonnes réponses</span></div>
+  <div class="carte"><div class="enc"><span class="t">CE QUE VOUS EN FAITES</span>${mot}</div></div>`;
+ document.getElementById('final').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('valider').addEventListener('click',valider);
+document.getElementById('rejouer').addEventListener('click',()=>location.reload());
+rendre();
+
+</script>
+</body></html>
